@@ -1,6 +1,5 @@
 import express from "express";
 import path from "node:path";
-import db from "./config/connection.js";
 import type { Request, Response } from "express";
 import { ApolloServer } from "@apollo/server"; // Note: Import from @apollo/server-express
 import { expressMiddleware } from "@apollo/server/express4";
@@ -37,14 +36,6 @@ const startApolloServer = async () => {
       res.sendFile(path.join(__dirname, "../client/dist/index.html"));
     });
   }
-
-  // db.once("open", () => {
-  //   app.listen(PORT, () => {
-  //     console.log(`🌍 Now listening on localhost:${PORT}`);
-  //     console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
-  //   });
-  // });
-  // db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
