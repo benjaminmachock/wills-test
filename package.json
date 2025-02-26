@@ -11,7 +11,7 @@
     "render-build": "npm install && npm run build",
     "start:dev": "concurrently \"cd server && npm run watch\" \"wait-on tcp:3001 && cd client && npm run dev\"",
     "server": "cd server && npm start",
-    "start:prod": "concurrently \"cd server && npm run start\" \"cd client && npm run dev\""
+    "start:prod": "concurrently \"npm run start\" \"cd client && npm run dev\""
   },
   "keywords": [],
   "author": "",
