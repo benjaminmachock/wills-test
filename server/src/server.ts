@@ -1,6 +1,5 @@
 import express from "express";
-import path from "node:path";
-import type { Request, Response } from "express";
+
 import { ApolloServer } from "@apollo/server"; // Note: Import from @apollo/server-express
 import { expressMiddleware } from "@apollo/server/express4";
 import { typeDefs, resolvers } from "./schemas/index.js";
@@ -27,14 +26,6 @@ const startApolloServer = async () => {
       context: authenticateToken as any,
     })
   );
-
-  if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "../client/dist")));
-
-    app.get("*", (_req: Request, res: Response) => {
-      res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-    });
-  }
 
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
