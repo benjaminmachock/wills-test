@@ -7,7 +7,9 @@ import type { Request, Response } from "express";
 import { expressMiddleware } from "@apollo/server/express4";
 import { typeDefs, resolvers } from "./schemas/index.js";
 import { authenticateToken } from "./services/auth.js";
+import db from "./config/connection.js";
 
+//Common JS module system (const express = require("express"))    ES Module(import)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -18,6 +20,7 @@ const server = new ApolloServer({
 
 const startApolloServer = async () => {
   await server.start();
+  await db;
 
   const app = express();
   const PORT = process.env.PORT || 3001;
